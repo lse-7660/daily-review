@@ -9,6 +9,8 @@ import { RiKnifeLine } from 'react-icons/ri';
 import { GiElectric } from 'react-icons/gi';
 
 const HomePage = () => {
+    // 삼항연산자는 그 자체가 값을 반환한다!
+
     // changeName
     const [name, setName] = useState('Rucker');
     // name은 변수, setName은 함수
@@ -42,7 +44,10 @@ const HomePage = () => {
             <div>
                 <h2>changeName</h2>
                 <div>
-                    <button className="bg-slate-200 py-2 px-7 rounded" onClick={changeName}>
+                    <button
+                        className="bg-slate-200 py-2 px-7 rounded"
+                        onClick={changeName}
+                    >
                         {name}
                     </button>
                 </div>
@@ -50,11 +55,19 @@ const HomePage = () => {
             <div>
                 <h2>Counter</h2>
                 <div className="flex flex-row">
-                    <button onClick={decrease} className="w-8 h-8 bg-slate-700 text-white">
+                    <button
+                        onClick={decrease}
+                        className="w-8 h-8 bg-slate-700 text-white"
+                    >
                         -
                     </button>
-                    <div className="flex justify-center items-center w-12 h-8 ">{number}</div>
-                    <button onClick={increase} className="w-8 h-8 bg-slate-700 text-white">
+                    <div className="flex justify-center items-center w-12 h-8 ">
+                        {number}
+                    </div>
+                    <button
+                        onClick={increase}
+                        className="w-8 h-8 bg-slate-700 text-white"
+                    >
                         +
                     </button>
                 </div>
@@ -66,7 +79,11 @@ const HomePage = () => {
                         setIsOpen(!isOpen);
                     }}
                 >
-                    {isOpen ? <GrFormClose /> : <TiThMenu />}
+                    {isOpen ? (
+                        <GrFormClose />
+                    ) : (
+                        <TiThMenu />
+                    )}
                 </button>
             </div>
             <div>
@@ -75,7 +92,9 @@ const HomePage = () => {
                     {sortNav.map((item, index) => (
                         <button
                             className={`flex flex-col items-center ${
-                                selected === index ? 'border-b-4 border-blue-500' : ''
+                                selected === index
+                                    ? 'border-b-4 border-blue-500'
+                                    : ''
                             }`}
                             onClick={() => {
                                 setSelected(index);
@@ -87,7 +106,20 @@ const HomePage = () => {
                         </button>
                     ))}
                 </div>
-                <div>{}</div>
+                <div>
+                    {sortNav.map((item, index) => (
+                        <div
+                            key={index}
+                            className={`w-full py-5 ${
+                                selected === index
+                                    ? 'display'
+                                    : 'hidden'
+                            }`}
+                        >
+                            {`${item.value} 귀여워`}
+                        </div>
+                    ))}
+                </div>
             </div>
         </div>
     );
