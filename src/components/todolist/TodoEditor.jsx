@@ -1,5 +1,3 @@
-'use client';
-
 import React, { useState } from 'react';
 
 const TodoEditor = ({ addTodo }) => {
@@ -8,10 +6,18 @@ const TodoEditor = ({ addTodo }) => {
     const onChangeTask = (e) => {
         setTask(e.target.value);
     };
+
     const onSubmit = () => {
         addTodo(task);
         setTask('');
     };
+
+    const onKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            onSubmit();
+        }
+    };
+
     return (
         <div>
             <h2>새로운 Todo 작성하기</h2>
@@ -20,14 +26,16 @@ const TodoEditor = ({ addTodo }) => {
                     type="text"
                     value={task}
                     onChange={onChangeTask}
-                    placeholder="무엇을 해야 하나요?"
+                    onKeyDown={onKeyDown}
+                    className="p-3"
+                    placeholder="할 일을 입력해 주세요"
                 />
                 <button
                     type="submit"
-                    onClick={onSubmit}
                     disabled={!task}
+                    onClick={onSubmit}
                 >
-                    할 일 추가
+                    추가
                 </button>
             </form>
         </div>
